@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In &mdash; Nature of the Philippines</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-login">
+    <div class="page-wrapper login-page">
+        <div class="page-container">
+            <div class="login-card">
+                <h1 class="login-heading">Welcome</h1>
+                <p class="login-subtitle">Log in to explore Philippines</p>
+
+                <form id="loginForm" onsubmit="return handleLogin(event)">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter you Email Address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-wrap">
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">Show</button>
+                        </div>
+                    </div>
+
+                    <div class="login-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember"> Remember me
+                        </label>
+                    </div>
+
+                    <button type="submit" class="login-btn">Log In</button>
+                </form>
+
+                <div class="login-hint">
+                    Demo Account: <span class="hint-badge">acc@demo.com</span> / <span class="hint-badge">password</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById('password');
+            const btn = document.querySelector('.password-toggle');
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = 'Hide';
+            } else {
+                input.type = 'password';
+                btn.textContent = 'Show';
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === 'acc@demo.com' && password === 'password') {
+                sessionStorage.setItem('loggedIn', 'true');
+                window.location.href = 'home.html';
+            } else {
+                alert('Invalid credentials. Try acc@demo.com / password');
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
